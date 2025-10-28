@@ -5,7 +5,6 @@ import qcd_ml
 import torch
 from scipy.sparse.linalg import LinearOperator, eigs
 
-from MG_preconditioner import MG
 from parameters import *
 
 # define an inner product
@@ -24,7 +23,6 @@ for g in qcd_ml.qcd.static.gamma:
 
 # lattice sizes
 lattice_sizes = U.shape[1:5]
-coarse_lattice_sizes = [l // 2 for l in lattice_sizes]
 
 
 # apply Dirac operator
@@ -44,7 +42,7 @@ def winv_np(x):
     res, _ = qcd_ml.util.solver.GMRES(
         w,
         inp,
-        torch.randn_like(inp),
+        torch.clone(inp),
         eps=1e-8,
         maxiter=100,
     )
