@@ -13,7 +13,7 @@ The different data from the talk can be generated in the following ways:
     - Unpreconditioned: `python3.11 solve_unprec.py -l LATTICE -q Q -m M`
     - Multigrid: `python3.11 solve_mg.py -l LATTICE -q Q -m M` (Note that the eigenvectors have to be available, so the corresponding spectrum needs to be calculated beforehand.)
     - Preconditioner network: `python3.11 solve_prec.py -l LATTICE -q Q -m M -f N -n L`
-    - Preconditioner network (transfer): `python3.11 solve_prec_transfer.py -l LATTICE -q Q -m M -f N -n L` (the options describe the solved linear system. To specify which network to use, the correct path has to be provided in line 21 of `solve_prec_transfer.py`. If moving a model from the "8c16" to the "16c32" lattice, `smaller=True` has to be set in line 37 of `solve_prec_transfer.py`.)
+    - Preconditioner network (transfer): `python3.11 solve_prec_transfer.py -l LATTICE -q Q -m M -f N -n L` (the options describe the solved linear system. To specify which network to use, the correct path has to be provided in line 21 of `solve_prec_transfer.py`)
 
 ## Data availability
 The 8c16 ensemble is available on Zenodo [2]. We use configurations 1200 (Q=0), 2200 (Q=1) and 2350 (Q=2).

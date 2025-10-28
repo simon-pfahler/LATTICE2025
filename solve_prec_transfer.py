@@ -34,7 +34,13 @@ w = qcd_ml.qcd.dirac.dirac_wilson_clover(U, mass, 1.0)
 lattice_sizes = U.shape[1:5]
 
 # load the model and load the weights
-model = Preconditioner_network(U, nr_layers, long_range_paths, smaller=True)
+model = None
+if lattice == "16c32" and weights_filename[8:12] == "8c16":
+    model = Preconditioner_network(U, nr_layers, long_range_paths, smaller=True)
+else:
+    model = Preconditioner_network(
+        U, nr_layers, long_range_paths, smaller=False
+    )
 model.load_state_dict(torch.load(weights_filename, weights_only=True))
 
 # generate right-hand sides
