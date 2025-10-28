@@ -29,7 +29,8 @@ learning_rate = 1e-2
 training_steps = 1000
 
 # solve parameters
-mg_smoothing_steps = 10
+mg_presmoothing_steps = 10
+mg_postsmoothing_steps = 10
 nr_solves = 10
 
 # Wilson operator paths

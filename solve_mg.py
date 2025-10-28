@@ -50,15 +50,6 @@ w_coarse_precomputed = torch.zeros(
     (*coarse_lattice_sizes, 12, *coarse_lattice_sizes, 12), dtype=torch.cdouble
 )
 
-# >>> work with new vectors
-# for bx, by, bz, bt in product(*[range(bl) for bl in coarse_lattice_sizes]):
-#    print(f"Calculating precomupted w_coarse for {bx},{by},{bz},{bt}")
-#    for idx in range(12):
-#        rhs = torch.zeros((*coarse_lattice_sizes, 12), dtype=torch.cdouble)
-#        rhs[bx, by, bz, bt, idx] = 1
-#        w_coarse_precomputed[..., bx, by, bz, bt, idx] = w_coarse(rhs)
-# <<< work with new vectors
-
 try:
     w_coarse_precomputed = torch.load(
         f"./wcoarse/{lattice}/Q{Q}.pt", weights_only=True
@@ -79,9 +70,12 @@ w_coarse_precomputed_lambda = lambda x: torch.einsum(
 
 def prec(vec):
     # pre-smoothing
-    presmoothed = qcd_ml.util.solver.GMRES(
-        w, vec, torch.zeros_like(vec), maxiter=mg_smoothing_steps
-    )[0]
+    if mg_presmoothing_steps > 0:
+        presmoothed = qcd_ml.util.solver.GMRES(
+            w, vec, torch.clone(vec), maxiter=mg_smoothing_steps
+        )[0]
+    else:
+        presmoothed = torch.clone(vec)
 
     # get coarse grid residual
     fine_residual = vec - w(presmoothed)
@@ -91,17 +85,21 @@ def prec(vec):
     cgc_coarse_vec = qcd_ml.util.solver.GMRES(
         w_coarse_precomputed_lambda,
         coarse_residual,
-        torch.zeros_like(coarse_residual),
+        torch.clone(coarse_residual),
         eps=1e-5,
+        maxiter=10000,
     )[0]
 
     # move coarse-grid correction back to fine grid
     fine_improved = presmoothed + mg.prolong(cgc_coarse_vec)
 
     # post-smoothing
-    postsmoothed = qcd_ml.util.solver.GMRES(
-        w, vec, fine_improved, maxiter=mg_smoothing_steps
-    )[0]
+    if mg_postsmoothing_steps > 0:
+        postsmoothed = qcd_ml.util.solver.GMRES(
+            w, vec, fine_improved, maxiter=mg_postsmoothing_steps
+        )[0]
+    else:
+        postsmoothed = torch.clone(fine_improved)
 
     return postsmoothed
 
