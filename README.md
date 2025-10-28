@@ -1,4 +1,5 @@
 # A novel gauge-equivariant neural network architecture for preconditioners in lattice QCD
+D. Knüttel, C. Lehner, **S. Pfahler**, T. Wettig
 
 This repository contains everything needed to recreate the results shown in the LATTICE 2025 talk "A novel gauge-equivariant neural network architecture for preconditioners in lattice QCD" by D. Knüttel, C. Lehner, **S. Pfahler**, T. Wettig.
 
@@ -16,9 +17,9 @@ The different data from the talk can be generated in the following ways:
     - Preconditioner network (transfer): `python3.11 solve_prec_transfer.py -l LATTICE -q Q -m M -f N -n L` (the options describe the solved linear system. To specify which network to use, the correct path has to be provided in line 21 of `solve_prec_transfer.py`)
 
 ## Data availability
-The 8c16 ensemble is available on Zenodo [2]. We use configurations 1200 (Q=0), 2200 (Q=1) and 2350 (Q=2).
+The 8c16 ensemble is available on Zenodo [2]. We use configurations 1200 (Q=0), 2200 (Q=1), 2350 (Q=2) and 4724 (Q=3).
 
-The 16c32 ensemble will be avaiable on Zenodo shortly. We use configurations 282 (Q=0) and 329 (Q=4).
+The 16c32 ensemble will be avaiable on Zenodo shortly. We use configurations 282 (Q=0), 472 (Q=2), 329 (Q=4) and 591 (Q=8).
 
 For ease of use, the configurations used in these tests are available in the folder `configs`.
 
