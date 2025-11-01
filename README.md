@@ -19,11 +19,13 @@ The different data from the talk can be generated in the following ways:
 ## Data availability
 The 8c16 ensemble is available on Zenodo [2]. We use configurations 1200 (Q=0), 2200 (Q=1), 2350 (Q=2) and 4724 (Q=3).
 
-The 16c32 ensemble will be avaiable on Zenodo shortly. We use configurations 282 (Q=0), 472 (Q=2), 329 (Q=4) and 591 (Q=8).
+The 16c32 ensemble is also avaiable on Zenodo [3]. We use configurations 282 (Q=0), 472 (Q=2), 329 (Q=4) and 591 (Q=8).
 
 For ease of use, the configurations used in these tests are available in the folder `configs`.
 
 ## References
 [1] D. Knuettel, S. Pfahler, Rielco, and R. Lehner, _daknuett/qcd_ml: v0.5.0_. (May 21, 2025). Zenodo. doi: [10.5281/zenodo.13254662](https://doi.org/10.5281/zenodo.13254662).
 
-[2] D. Knüttel und D. Knüttel, _ldg/rqcd/qcdML/ens_001_. (March 13, 2025). Zenodo. doi: [10.5281/zenodo.15018324](https://doi.org/10.5281/zenodo.15018324).
+[2] D. Knüttel, _ldg/rqcd/qcdML/ens_001_. (March 13, 2025). Zenodo. doi: [10.5281/zenodo.15018324](https://doi.org/10.5281/zenodo.15018324).
+
+[3] D. Knüttel, _mc://ldg/rqcd/qcdML/ens_004_selected_. (Oktober 31, 2025). Zenodo. doi: [10.5281/zenodo.17494830](https://doi.org/10.5281/zenodo.17494830).
