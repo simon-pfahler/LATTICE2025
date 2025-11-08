@@ -44,7 +44,6 @@ def winv_np(x):
         inp,
         torch.clone(inp),
         eps=1e-8,
-        maxiter=100,
     )
     print(len(_["history"]))
     return np.reshape(res.detach().numpy(), (np.prod(lattice_sizes) * 4 * 3))

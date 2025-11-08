@@ -17,13 +17,6 @@ except:
     raise RuntimeError("Loading of the gauge field failed")
 w = qcd_ml.qcd.dirac.dirac_wilson_clover(U, mass, 1.0)
 
-# load the eigenvectors and calculate block-orthonormal test-vectors from them
-try:
-    eigenvectors = np.load(ev_file)
-    eigenvectors = torch.from_numpy(eigenvectors[..., :12])
-except:
-    raise RuntimeError("Loading of the eigenvectors failed")
-
 # lattice sizes
 lattice_sizes = U.shape[1:5]
 
